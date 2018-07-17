@@ -1,16 +1,16 @@
 {
-  "name": "server",
+  "name": "gameoflife-grapqhlserver",
   "version": "1.0.0",
-  "description": "",
+  "description": "Game of Life using Grapqhl",
   "main": "index.js",
   "scripts": {
     "build": "babel ./src -d dist",
     "eslint": "eslint --ignore-path .gitignore ./src",
-    "serve": "node dist/index.js",
-    "start": "nodemon --exec babel-node -- ./src"
+    "start:dev": "nodemon --exec babel-node -- ./src",
+    "start:prod": "node dist/index.js"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "apollo-server-express": "^1.3.6",
     "body-parser": "^1.18.3",
