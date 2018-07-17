@@ -2,12 +2,6 @@ import { makeExecutableSchema } from 'graphql-tools';
 import resolvers from './resolvers';
 
 const typeDefs = `
-  type Board {
-    name: String
-    width: Int
-    height: Int
-  }
-
   type BoardState {
     base64: String
     births: Int
