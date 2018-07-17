@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import schema from './schema';
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const server = express();
 
 server.use('*', cors({ origin: '*' }));
