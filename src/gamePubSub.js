@@ -10,11 +10,12 @@ class GamePubSub {
 
   cycle() {
     const generationData = this.game.cycle();
-    this.pubsub.publish('boardUpdated', generationData);
+    this.pubsub.publish('boardUpdated', {
+      boardUpdated: generationData
+    });
   }
 
   putPattern(positions) {
-    console.log(111);
     this.game.putPattern(positions);
   }
 

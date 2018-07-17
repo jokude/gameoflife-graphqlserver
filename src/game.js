@@ -10,6 +10,10 @@ class Game {
     this.generation = null;
   }
 
+  encodeData(data){
+    return data.toString('base64');
+  }
+
   getStats(generation){
     return {
       total: generation.filter(state => state).length,
@@ -18,20 +22,12 @@ class Game {
     };
   }
 
-  setBoard(map) {
-    this.gol.setMap(map);
-  }
-
   getBoard(){
     const board = this.gol.map.map(({ state }) => state);
     const binaryMap = GameOfLife.binaryLife(board);
     return Object.assign({
-      base64: binaryMap.toString('base64'),
+      base64: this.encodeData(binaryMap),
     }, this.getStats(this.gol.map));
-  }
-
-  encodeData(data){
-    return data.toString('base64');
   }
 
   cycle() {
@@ -40,14 +36,9 @@ class Game {
     this.births += newBirths;
     this.deaths += this.generation.realChanges.length - newBirths;
     this.gol.setMap(this.generation.map);
-    return {
-      boardUpdated: {
-        base64: this.generation.mapBinary.toString('base64'),
-        total: this.generation.map.filter(state => state).length,
-        births: this.births,
-        deaths: this.deaths
-      }
-    };
+    return Object.assign({
+      base64: this.encodeData(this.generation.mapBinary),
+    }, this.getStats(this.generation.map));
   }
 
   putPattern(positions) {
